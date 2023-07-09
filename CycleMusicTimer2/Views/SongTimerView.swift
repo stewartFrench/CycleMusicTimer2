@@ -497,8 +497,4 @@ struct SongTimerView: View
     
   } // var body
 } // SongTimerView
-
-// 2023/07/09 - SLF - Comment added to verify I am connected correctly
-//                    to GitHub.
-//
 //--------------------------------------------
