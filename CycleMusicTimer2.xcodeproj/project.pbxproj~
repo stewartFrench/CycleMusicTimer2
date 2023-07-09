@@ -1,0 +1,416 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		712433B029F03821002EEF31 /* SongTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712433AF29F03821002EEF31 /* SongTimerView.swift */; };
+		718F57DE29D735E1006F3431 /* CycleMusicTimer2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718F57DD29D735E1006F3431 /* CycleMusicTimer2.swift */; };
+		718F57E029D735E1006F3431 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718F57DF29D735E1006F3431 /* ContentView.swift */; };
+		718F57E229D735E3006F3431 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 718F57E129D735E3006F3431 /* Assets.xcassets */; };
+		718F57E529D735E3006F3431 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 718F57E429D735E3006F3431 /* Preview Assets.xcassets */; };
+		718F57EF29D7364D006F3431 /* MusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718F57EE29D7364D006F3431 /* MusicViewModel.swift */; };
+		71C05FAB29E5B1F800E76F8E /* PlaylistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C05FAA29E5B1F800E76F8E /* PlaylistsView.swift */; };
+		71C05FAD29E5B21200E76F8E /* TracksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C05FAC29E5B21200E76F8E /* TracksView.swift */; };
+		71E9636C2A0A97C4003427E2 /* DrillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E9636B2A0A97C4003427E2 /* DrillModel.swift */; };
+		71E9636E2A13BD2D003427E2 /* DrillEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E9636D2A13BD2D003427E2 /* DrillEditView.swift */; };
+		71E963702A15153D003427E2 /* DrillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E9636F2A15153D003427E2 /* DrillViewModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		712433AF29F03821002EEF31 /* SongTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTimerView.swift; sourceTree = "<group>"; };
+		718F57DA29D735E1006F3431 /* CycleMusicTimer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CycleMusicTimer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		718F57DD29D735E1006F3431 /* CycleMusicTimer2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleMusicTimer2.swift; sourceTree = "<group>"; };
+		718F57DF29D735E1006F3431 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		718F57E129D735E3006F3431 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		718F57E429D735E3006F3431 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		718F57EE29D7364D006F3431 /* MusicViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicViewModel.swift; sourceTree = "<group>"; };
+		71B9F88D29D771CD0076FBBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		71C05FAA29E5B1F800E76F8E /* PlaylistsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsView.swift; sourceTree = "<group>"; };
+		71C05FAC29E5B21200E76F8E /* TracksView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksView.swift; sourceTree = "<group>"; };
+		71E9636B2A0A97C4003427E2 /* DrillModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillModel.swift; sourceTree = "<group>"; };
+		71E9636D2A13BD2D003427E2 /* DrillEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillEditView.swift; sourceTree = "<group>"; };
+		71E9636F2A15153D003427E2 /* DrillViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillViewModel.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		718F57D729D735E1006F3431 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		718F57D129D735E1006F3431 = {
+			isa = PBXGroup;
+			children = (
+				718F57DC29D735E1006F3431 /* CycleMusicTimer2 */,
+				718F57DB29D735E1006F3431 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		718F57DB29D735E1006F3431 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				718F57DA29D735E1006F3431 /* CycleMusicTimer2.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		718F57DC29D735E1006F3431 /* CycleMusicTimer2 */ = {
+			isa = PBXGroup;
+			children = (
+				71B9F88D29D771CD0076FBBC /* Info.plist */,
+				718F57DD29D735E1006F3431 /* CycleMusicTimer2.swift */,
+				718F57ED29D7361F006F3431 /* Models */,
+				718F57EC29D73615006F3431 /* ViewModels */,
+				718F57EB29D7360D006F3431 /* Views */,
+				718F57E129D735E3006F3431 /* Assets.xcassets */,
+				718F57E329D735E3006F3431 /* Preview Content */,
+			);
+			path = CycleMusicTimer2;
+			sourceTree = "<group>";
+		};
+		718F57E329D735E3006F3431 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				718F57E429D735E3006F3431 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		718F57EB29D7360D006F3431 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				718F57DF29D735E1006F3431 /* ContentView.swift */,
+				71C05FAA29E5B1F800E76F8E /* PlaylistsView.swift */,
+				71E9636D2A13BD2D003427E2 /* DrillEditView.swift */,
+				71C05FAC29E5B21200E76F8E /* TracksView.swift */,
+				712433AF29F03821002EEF31 /* SongTimerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		718F57EC29D73615006F3431 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				718F57EE29D7364D006F3431 /* MusicViewModel.swift */,
+				71E9636F2A15153D003427E2 /* DrillViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		718F57ED29D7361F006F3431 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				71E9636B2A0A97C4003427E2 /* DrillModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		718F57D929D735E1006F3431 /* CycleMusicTimer2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 718F57E829D735E3006F3431 /* Build configuration list for PBXNativeTarget "CycleMusicTimer2" */;
+			buildPhases = (
+				718F57D629D735E1006F3431 /* Sources */,
+				718F57D729D735E1006F3431 /* Frameworks */,
+				718F57D829D735E1006F3431 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CycleMusicTimer2;
+			productName = SpinTimer;
+			productReference = 718F57DA29D735E1006F3431 /* CycleMusicTimer2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		718F57D229D735E1006F3431 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					718F57D929D735E1006F3431 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = 718F57D529D735E1006F3431 /* Build configuration list for PBXProject "CycleMusicTimer2" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 718F57D129D735E1006F3431;
+			productRefGroup = 718F57DB29D735E1006F3431 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				718F57D929D735E1006F3431 /* CycleMusicTimer2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		718F57D829D735E1006F3431 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				718F57E529D735E3006F3431 /* Preview Assets.xcassets in Resources */,
+				718F57E229D735E3006F3431 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		718F57D629D735E1006F3431 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71E9636C2A0A97C4003427E2 /* DrillModel.swift in Sources */,
+				71E963702A15153D003427E2 /* DrillViewModel.swift in Sources */,
+				718F57EF29D7364D006F3431 /* MusicViewModel.swift in Sources */,
+				712433B029F03821002EEF31 /* SongTimerView.swift in Sources */,
+				71C05FAD29E5B21200E76F8E /* TracksView.swift in Sources */,
+				718F57E029D735E1006F3431 /* ContentView.swift in Sources */,
+				71C05FAB29E5B1F800E76F8E /* PlaylistsView.swift in Sources */,
+				71E9636E2A13BD2D003427E2 /* DrillEditView.swift in Sources */,
+				718F57DE29D735E1006F3431 /* CycleMusicTimer2.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		718F57E629D735E3006F3431 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		718F57E729D735E3006F3431 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		718F57E929D735E3006F3431 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"CycleMusicTimer2/Preview Content\"";
+				DEVELOPMENT_TEAM = SDK22Z6CLU;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CycleMusicTimer2/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CycleTimer2;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "This app requires Apple Music library access to display artists, albums, playlists, and to play music tracks.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stewart.french.CycleMusicTimer2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		718F57EA29D735E3006F3431 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"CycleMusicTimer2/Preview Content\"";
+				DEVELOPMENT_TEAM = SDK22Z6CLU;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CycleMusicTimer2/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CycleTimer2;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "This app requires Apple Music library access to display artists, albums, playlists, and to play music tracks.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stewart.french.CycleMusicTimer2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		718F57D529D735E1006F3431 /* Build configuration list for PBXProject "CycleMusicTimer2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				718F57E629D735E3006F3431 /* Debug */,
+				718F57E729D735E3006F3431 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		718F57E829D735E3006F3431 /* Build configuration list for PBXNativeTarget "CycleMusicTimer2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				718F57E929D735E3006F3431 /* Debug */,
+				718F57EA29D735E3006F3431 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 718F57D229D735E1006F3431 /* Project object */;
+}
