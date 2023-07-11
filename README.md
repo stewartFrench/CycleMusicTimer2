@@ -1,7 +1,7 @@
 # CycleMusicTimer2
 Manage Your Drills While Teaching a Cycle Class
 
-CycleTimer2 Version 1.0 is an app that runs on iPhones and iPads. 
+CycleTimer2 is an app that runs on iPhones and iPads. 
 CycleTimer2 displays playlists, tracks, and a music player that are 
 easily read from a stationary bike when the iPad or iPhone is over 
 on the stereo stack. 
