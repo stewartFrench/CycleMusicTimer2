@@ -1,7 +1,6 @@
 //---------------------------------------------------------
 //
 //  MusicViewModel.swift
-//  Copyright (c) 2023 Stewart French. All rights reserved.
 //
 //  Created by Stewart French on 1/25/23.
 //
