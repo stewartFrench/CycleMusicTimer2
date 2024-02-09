@@ -1353,8 +1353,17 @@ class MusicViewModel : ObservableObject
   @objc func catchMPMusicPlayerControllerNowPlayingItemDidChange()
   {
     updateTrackInfo()
-    setPlaybackRate( playbackRate: 1.0 )
-    MMPlayer.currentPlaybackTime = 0.0
+
+//  2024/02/08 - S.French - ios17 introduced a weird bug where
+//      setting the playback rate when the automatic transition
+//      to the next track causes a hiccup in the playback stream,
+//      jumping back to beginning.  Turns out the playbackRate is now
+//      automatically set back to 1.0 anyway.
+//      I have commented these lines out for now and thoroughly
+//      tested.  I leave them in for completeness.
+// 
+//    setPlaybackRate( playbackRate: 1.0 )
+//    MMPlayer.currentPlaybackTime = 0.0
 
   } // catchMPMusicPlayerControllerNowPlayingItemDidChange
 

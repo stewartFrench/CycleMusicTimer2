@@ -479,21 +479,19 @@ struct SongTimerView: View
     
 
     .onChange(
-      of: musicVM.selectedTrackIndex,
-      perform:
-        { _ in
+      of: musicVM.selectedTrackIndex )
+        {
           countdownTime =
             musicVM.durationOfSelectedTrack()
           trackPlaybackRate = 1.0
-        } ) // onChange
+        } // onChange
     
 
     .onChange(
-      of: trackPlaybackRate,
-      perform:
-        { _ in
+      of: trackPlaybackRate )
+        {
           musicVM.setPlaybackRate( playbackRate: trackPlaybackRate )
-        } ) // onChange
+        } // onChange
     
   } // var body
 } // SongTimerView

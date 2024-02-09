@@ -110,26 +110,24 @@ struct PlaylistsView: View
           } // Foreach
 
           .onChange(
-            of: scrollToCurrentPlaylist,
-            perform:
-              { _ in
+            of: scrollToCurrentPlaylist )
+              { old, new in
                 withAnimation(.spring() )
                 {
                   proxy.scrollTo(tSelectedPlaylist, anchor: .center)
                 }
 
-              } ) // onChange
+              } // onChange
 
           .onChange(
-            of: thumbedPlaylist,
-            perform:
-              { _ in
+           of: thumbedPlaylist )
+              { old, new in
                 withAnimation(.spring() )
                 {
                   proxy.scrollTo( thumbedPlaylist, anchor: .center )
                 }
 
-              } ) // onChange
+              } // onChange
 
         } // ScrollViewReader
       } // ScrollView

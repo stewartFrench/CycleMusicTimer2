@@ -153,33 +153,30 @@ struct TracksView: View
           } // ForEach
           
           .onChange(
-            of: localTrackSelected,
-            perform:
-              { value in
+            of: localTrackSelected )
+              { old, new in
                 withAnimation(.spring() )
                 {
-                  musicVM.setSelectedTrack( trackIndex: value! )
+                  musicVM.setSelectedTrack( trackIndex: localTrackSelected! )
                   musicVM.saveTrackInfoToAppStorage()
-                  proxy.scrollTo(value, anchor: .center)
+                  proxy.scrollTo(localTrackSelected, anchor: .center)
                 }
-              } ) // onChange
+              } // onChange
           
           .onChange(
-            of: scrollToCurrentTrack,
-            perform:
-              { _ in
+            of: scrollToCurrentTrack )
+              { old, new in
                 withAnimation(.spring() )
                 {
                   proxy.scrollTo(localTrackSelected, anchor: .center)
                 }
-              } ) // onChange
+              } // onChange
           
           .onChange(
-            of: musicVM.selectedTrackIndex,
-            perform:
-              { _ in
+            of: musicVM.selectedTrackIndex )
+              { old, new in
                 localTrackSelected = musicVM.selectedTrackIndex
-              } ) // onChange
+              } // onChange
           
         }  // ScrollViewReader
         
