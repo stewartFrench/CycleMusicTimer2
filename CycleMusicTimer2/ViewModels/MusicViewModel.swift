@@ -81,6 +81,11 @@ class MusicViewModel : ObservableObject
 
   @Published var durationOfPlaylist : [Double] = []
 
+            // totalPlaylistDuration contains the sum of all the tracks
+            // durations. It is the duration of the entire playlist.
+
+  @Published var totalPlaylistDuration : Double = 0.0
+
             // The user chooses an artist, album, or playlist in order
             // to see a list of tracks to play.  Once the album or
             // playlist is selected and the tracks are shown, along
@@ -636,6 +641,10 @@ class MusicViewModel : ObservableObject
           totalTracksTime = totalTracksTime + temp
       }
 
+      totalPlaylistDuration = totalTracksTime
+
+      print( "totalTracksTime = \(totalTracksTime)" )
+
             // Run through the tracks again.  For each track, store
             // off the total remaining time in the playlist, then
             // subtract out the time of the current track.
@@ -662,7 +671,7 @@ class MusicViewModel : ObservableObject
 
        let tString = 
            String( 
-              format: "%3d.%02d", 
+              format: "%3d:%02d", 
            arguments: [tMinutes, tSeconds] )
 
        return tString
@@ -673,6 +682,33 @@ class MusicViewModel : ObservableObject
      }
 
   } // remainingDurationString
+
+
+
+  //---------------------------------------------------------
+  func cumulativeDurationString( trackIndex: Int ) -> String
+  {
+     if trackIndex < durationOfPlaylist.count
+     {
+       let tDuration = totalPlaylistDuration - 
+                         durationOfPlaylist[ trackIndex ]
+
+       let tMinutes = Int( tDuration ) / 60
+       let tSeconds = Int( tDuration ) % 60
+
+       let tString = 
+           String( 
+              format: "%3d:%02d",
+           arguments: [tMinutes, tSeconds] )
+
+       return tString
+     }
+     else
+     {
+       return ""
+     }
+
+  } // cumulativeDurationString
 
 
 

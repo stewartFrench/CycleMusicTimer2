@@ -54,6 +54,9 @@ struct TracksView: View
   @State var elapsedTrackTime : Float = 0
   
   @State var scrollToCurrentTrack : Bool = false
+  
+  @State var showingSettings : Bool = false
+  @AppStorage("showPlaylistElapsedTimeInTracks") private var showPlaylistElapsedTime : Bool = false
 
   private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
@@ -64,6 +67,20 @@ struct TracksView: View
   {
     VStack(spacing: 0)
     {
+      
+      //-------------------------------------------
+      // Playlist Name Header (fixed, non-scrolling)
+      
+      Text(musicVM.getCollectionName())
+        .font(.title2)
+        .fontWeight(.semibold)
+        .lineLimit(2)
+        .multilineTextAlignment(.center)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .frame(maxWidth: .infinity)
+      
+      Divider()
       
       //-------------------------------------------
       // Tracks Listing
@@ -92,6 +109,8 @@ struct TracksView: View
                   HStack
                   {
                     Text( 
+                      showPlaylistElapsedTime ?
+                      musicVM.cumulativeDurationString( trackIndex: feTrack ) :
                       musicVM.remainingDurationString( trackIndex: feTrack ) )
                     .foregroundColor( .blue )
                      .frame(
@@ -193,32 +212,71 @@ struct TracksView: View
     //-------------------------------------------
     // Navigation Bar
     
-    .navigationBarTitle(
-      musicVM.getCollectionName(),
-      displayMode: .inline )
-    .navigationBarItems(
-      trailing:
-        HStack
+    .navigationBarTitleDisplayMode(.inline)
+    .toolbar
+    {
+      ToolbarItem(placement: .navigationBarLeading)
       {
-        NavigationLink(
-          destination: SongTimerView( musicStateChanged: $musicStateChanged ),
-          label:
-            {
-              Image( systemName: "waveform" )
-            } )
-        .disabled( musicVM.selectedTrackIndex == nil )
-        .opacity( idiom == .pad ? 0 : 1 )
-        
         Button(
           action:
             {
-              scrollToCurrentTrack.toggle()
+              showingSettings = true
             },
           label:
             {
-              Image( systemName: "filemenu.and.selection" )
+              Image( systemName: "gearshape" )
             } )
-      } ) // HStack
+      }
+      
+      ToolbarItem(placement: .navigationBarTrailing)
+      {
+        HStack
+        {
+          NavigationLink(
+            destination: SongTimerView( musicStateChanged: $musicStateChanged ),
+            label:
+              {
+                Image( systemName: "waveform" )
+              } )
+          .disabled( musicVM.selectedTrackIndex == nil )
+          .opacity( idiom == .pad ? 0 : 1 )
+          
+          Button(
+            action:
+              {
+                scrollToCurrentTrack.toggle()
+              },
+            label:
+              {
+                Image( systemName: "filemenu.and.selection" )
+              } )
+        }
+      }
+    }
+    .sheet(isPresented: $showingSettings)
+    {
+      NavigationView
+      {
+        Form
+        {
+          Section(header: Text("Duration Display"))
+          {
+            Toggle("Show Playlist Elapsed Time", isOn: $showPlaylistElapsedTime)
+            
+            Text(showPlaylistElapsedTime ? 
+              "Displays cumulative time elapsed" : 
+              "Displays time remaining in each track")
+              .font(.caption)
+              .foregroundColor(.secondary)
+          }
+        }
+        .navigationBarTitle("Settings", displayMode: .inline)
+        .navigationBarItems(trailing: Button("Done")
+        {
+          showingSettings = false
+        })
+      }
+    }
     
     
     //-------------------------------------------

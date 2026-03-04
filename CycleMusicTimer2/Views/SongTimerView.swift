@@ -56,10 +56,18 @@ struct SongTimerView: View
 
   @State var elapsedTrackTime : Float = 0
   @State var countdownTime : Double = 0
+  @State var playlistElapsedTime : Double = 0
+  
+  @State var countdownMinutesString : String = "00"
+  @State var countdownSecondsString : String = "00"
+  @State var playlistElapsedString : String = "  0:00"
   
   @State var trackPlaybackRate : Float = 1.0
   
   @State var showSheet : Bool = false
+  @State var showingSettings : Bool = false
+  @AppStorage("showPlaylistTimeInSongTimer") private var showPlaylistTime : Bool = false
+  @AppStorage("showPlaylistElapsedTimeInSongTimer") private var showPlaylistElapsedTime : Bool = true
 
 
   @State var timer = Timer.publish(
@@ -154,6 +162,16 @@ struct SongTimerView: View
   } // countdownTimeSeconds
   
   
+  //-------------------------------------------
+  func playlistElapsedTimeString( time: Double ) -> String
+  {
+    let tMinutes = Int(time) / 60
+    let tSeconds = Int(time) % 60
+    let s = String( format: "%3d:%02d", tMinutes, tSeconds )
+    return s
+  } // playlistElapsedTimeString
+  
+  
   
   //-------------------------------------------
   //-------------------------------------------
@@ -166,7 +184,8 @@ struct SongTimerView: View
         Text(
           musicVM.trackArtist(
             trackIndex: musicVM.selectedTrackIndex! ) )
-          .lineLimit( 1 )
+         .font( .title )
+         .lineLimit( 1 )
         
         VStack( spacing: 0 )
         {
@@ -176,6 +195,7 @@ struct SongTimerView: View
           Text(
             musicVM.trackName(
               trackIndex: musicVM.selectedTrackIndex! ) )
+          .font( .title )
           .foregroundColor( Color.white )
           .lineLimit( 2...2 )  // exactly 2 lines so it won't shift
                                // the other views when going from 1 to
@@ -187,13 +207,9 @@ struct SongTimerView: View
           HStack( alignment: .bottom )
           {
             Spacer()
-            Text(
-              countdownTimeMinutes(
-                time: countdownTime ) )
+            Text( countdownMinutesString )
             Text( ":" )
-            Text(
-              countdownTimeSeconds(
-                time: countdownTime ) )
+            Text( countdownSecondsString )
 
             Spacer()
           } // HStack
@@ -235,23 +251,29 @@ struct SongTimerView: View
             
             Spacer()
             
-            // -------------
-            // Rate Change Slider
+//            // -------------
+//            // Rate Change Slider
+//            
+//            ZStack
+//            {
+//              HStack
+//              {
+//                Spacer()
+//                Text( "|" )
+//                Spacer()
+//              }
+//
+//              Slider( value: $trackPlaybackRate,
+//                      in: 0.75...1.25,
+//                      step: 0.05 )
+//            }
             
-            ZStack
+            if showPlaylistTime
             {
-              HStack
-              {
-                Spacer()
-                Text( "|" )
-                Spacer()
-              }
-
-              Slider( value: $trackPlaybackRate,
-                      in: 0.75...1.25,
-                      step: 0.05 )
+              Text( (showPlaylistElapsedTime ? "Playlist Elapsed: " : "Playlist Remaining: ") + playlistElapsedString )
+              .font( .title3.monospacedDigit() )
             }
-            
+
             Spacer()
             
             // -------------
@@ -434,6 +456,16 @@ struct SongTimerView: View
     // Navigation Bar
 
     .navigationBarItems(
+      leading:
+        Button(
+          action:
+            {
+              showingSettings = true
+            },
+          label:
+            {
+              Image( systemName: "gearshape" )
+            } ),
       trailing:
         HStack
         {
@@ -442,6 +474,35 @@ struct SongTimerView: View
             Image( systemName: "square.and.arrow.up" )
           }
          } ) // navigationBarItems
+    .sheet(isPresented: $showingSettings)
+    {
+      NavigationView
+      {
+        Form
+        {
+          Section(header: Text("Playlist Timer Display"))
+          {
+            Toggle("Show Playlist Time", isOn: $showPlaylistTime)
+            
+            if showPlaylistTime
+            {
+              Toggle("Show Playlist Elapsed Time", isOn: $showPlaylistElapsedTime)
+              
+              Text(showPlaylistElapsedTime ? 
+                "Shows time elapsed in the playlist" : 
+                "Shows time remaining in the playlist")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            }
+          }
+        }
+        .navigationBarTitle("Settings", displayMode: .inline)
+        .navigationBarItems(trailing: Button("Done")
+        {
+          showingSettings = false
+        })
+      }
+    }
 
     
     //-------------------------------------------
@@ -465,13 +526,37 @@ struct SongTimerView: View
           perform:
     { _ in
 
-      elapsedTrackTime =
-        Float( musicVM.elapsedTimeOfSelectedTrack() /
-               musicVM.durationOfSelectedTrack() )
+      // Get elapsed time once to ensure both timers use the same value
+      let currentElapsedTime = musicVM.elapsedTimeOfSelectedTrack()
+      let trackDuration = musicVM.durationOfSelectedTrack()
       
-      countdownTime =
-        musicVM.durationOfSelectedTrack() -
-          musicVM.elapsedTimeOfSelectedTrack()
+      elapsedTrackTime = Float( currentElapsedTime / trackDuration )
+      
+      countdownTime = trackDuration - currentElapsedTime
+      
+      // Calculate cumulative playlist elapsed time using the same elapsed time
+      if let trackIndex = musicVM.selectedTrackIndex,
+         trackIndex < musicVM.durationOfPlaylist.count
+      {
+        let cumulativeTimeUpToThisTrack = 
+          musicVM.totalPlaylistDuration - 
+          musicVM.durationOfPlaylist[trackIndex]
+        playlistElapsedTime = 
+          cumulativeTimeUpToThisTrack + currentElapsedTime
+      }
+      
+      // Format both timers at the same time to ensure synchronization
+      countdownMinutesString = String( format: "%02d", Int(countdownTime) / 60 )
+      countdownSecondsString = String( format: "%02d", Int(countdownTime) % 60 )
+      
+      // Calculate playlist timer based on user preference (count up or count down)
+      let playlistTimeToDisplay = showPlaylistElapsedTime ? 
+        playlistElapsedTime :
+        (musicVM.totalPlaylistDuration - playlistElapsedTime)
+      
+      let playlistMinutes = Int(playlistTimeToDisplay) / 60
+      let playlistSeconds = Int(playlistTimeToDisplay) % 60
+      playlistElapsedString = String( format: "%3d:%02d", playlistMinutes, playlistSeconds )
 
       musicStateChanged = !musicStateChanged
 
