@@ -337,8 +337,7 @@ struct SongTimerView: View
 
             } // ScrollView
             .frame( minWidth: 200,
-                    maxWidth: .infinity,
-                    minHeight: screenGeometry.size.height * 0.50 )
+                    maxWidth: .infinity)
             .background( Color.white )
 
 
@@ -443,8 +442,7 @@ struct SongTimerView: View
           
         } // VStack
         .frame( minWidth: 200,
-                maxWidth: .infinity,
-                maxHeight: .infinity)
+                maxWidth: .infinity)
         .padding( 5 )
         .foregroundColor( Color.white )
         .background( Color.black )
