@@ -711,6 +711,45 @@ class MusicViewModel : ObservableObject
   } // cumulativeDurationString
 
 
+  //---------------------------------------------------------
+  func elapsedDurationString( trackIndex: Int ) -> String
+  {
+     // Shows cumulative time from start through END of this track
+     // durationOfPlaylist[i] contains remaining time FROM track i to end
+     // So to get elapsed time TO END of track i, we use durationOfPlaylist[i+1]
+     // (or totalPlaylistDuration for the last track)
+     
+     if trackIndex < durationOfPlaylist.count
+     {
+       let tDuration: Double
+       if trackIndex < durationOfPlaylist.count - 1
+       {
+         // Not the last track: elapsed time = total - remaining after this track
+         tDuration = totalPlaylistDuration - durationOfPlaylist[trackIndex + 1]
+       }
+       else
+       {
+         // Last track: elapsed time = total playlist duration
+         tDuration = totalPlaylistDuration
+       }
+
+       let tMinutes = Int( tDuration ) / 60
+       let tSeconds = Int( tDuration ) % 60
+
+       let tString = 
+           String( 
+              format: "%3d:%02d",
+           arguments: [tMinutes, tSeconds] )
+
+       return tString
+     }
+     else
+     {
+       return ""
+     }
+
+  } // elapsedDurationString
+
 
 //---------------------------------------------------------
   func countOfAlbums() -> Int

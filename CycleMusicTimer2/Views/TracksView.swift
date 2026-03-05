@@ -110,7 +110,7 @@ struct TracksView: View
                   {
                     Text( 
                       showPlaylistElapsedTime ?
-                      musicVM.cumulativeDurationString( trackIndex: feTrack ) :
+                      musicVM.elapsedDurationString( trackIndex: feTrack ) :
                       musicVM.remainingDurationString( trackIndex: feTrack ) )
                     .foregroundColor( .blue )
                      .frame(
