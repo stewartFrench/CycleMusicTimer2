@@ -643,7 +643,7 @@ class MusicViewModel : ObservableObject
 
       totalPlaylistDuration = totalTracksTime
 
-      print( "totalTracksTime = \(totalTracksTime)" )
+//      print( "totalTracksTime = \(totalTracksTime)" )
 
             // Run through the tracks again.  For each track, store
             // off the total remaining time in the playlist, then

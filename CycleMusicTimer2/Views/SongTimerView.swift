@@ -177,15 +177,19 @@ struct SongTimerView: View
   //-------------------------------------------
   var body: some View
   {
-    GeometryReader
-    { screenGeometry in
-      VStack
+    Group
+    {
+      if let selectedIndex = musicVM.selectedTrackIndex
       {
-        Text(
-          musicVM.trackArtist(
-            trackIndex: musicVM.selectedTrackIndex! ) )
-         .font( .title )
-         .lineLimit( 1 )
+        GeometryReader
+        { screenGeometry in
+          VStack
+          {
+          Text(
+            musicVM.trackArtist(
+              trackIndex: selectedIndex ) )
+           .font( .title )
+           .lineLimit( 1 )
         
         VStack( spacing: 0 )
         {
@@ -194,7 +198,7 @@ struct SongTimerView: View
           
           Text(
             musicVM.trackName(
-              trackIndex: musicVM.selectedTrackIndex! ) )
+              trackIndex: selectedIndex ) )
           .font( .title )
           .foregroundColor( Color.white )
           .lineLimit( 2...2 )  // exactly 2 lines so it won't shift
@@ -447,8 +451,27 @@ struct SongTimerView: View
         .foregroundColor( Color.white )
         .background( Color.black )
         
-      } // VStack
-    } // GeometryReader    
+          } // VStack
+        } // GeometryReader
+      }
+      else
+      {
+        // No track selected - show message
+        VStack
+        {
+          Spacer()
+          Text("No Track Selected")
+            .font(.title)
+            .foregroundColor(.white)
+          Text("Please select a track from the playlist")
+            .font(.body)
+            .foregroundColor(.gray)
+          Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.black)
+      }
+    } // Group
     
     //-------------------------------------------
     // Navigation Bar
