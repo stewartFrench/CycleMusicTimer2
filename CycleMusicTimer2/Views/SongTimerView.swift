@@ -61,6 +61,7 @@ struct SongTimerView: View
   @State var countdownMinutesString : String = "00"
   @State var countdownSecondsString : String = "00"
   @State var playlistElapsedString : String = "  0:00"
+  @State var songDurationString : String = "0:00"
   
   @State var trackPlaybackRate : Float = 1.0
   
@@ -68,6 +69,7 @@ struct SongTimerView: View
   @State var showingSettings : Bool = false
   @AppStorage("showPlaylistTimeInSongTimer") private var showPlaylistTime : Bool = false
   @AppStorage("showPlaylistElapsedTimeInSongTimer") private var showPlaylistElapsedTime : Bool = true
+  @AppStorage("songTimerCountsUp") private var songTimerCountsUp : Bool = false
 
 
   @State var timer = Timer.publish(
@@ -208,21 +210,43 @@ struct SongTimerView: View
           // -------------
           // Countdown Timer and Controls
           
-          HStack( alignment: .bottom )
+          ZStack
           {
-            Spacer()
-            Text( countdownMinutesString )
-            Text( ":" )
-            Text( countdownSecondsString )
+            HStack( alignment: .bottom )
+            {
+              Spacer()
+              Text( countdownMinutesString )
+              Text( ":" )
+              Text( countdownSecondsString )
 
-            Spacer()
-          } // HStack
-          .font(
-            .system( 
-              size: adjustedFontSize( 
-                      frameHeight: screenGeometry.size.height,
-                       frameWidth: screenGeometry.size.width ) )
-          .monospacedDigit() )
+              Spacer()
+            } // HStack
+            .font(
+              .system( 
+                size: adjustedFontSize( 
+                        frameHeight: screenGeometry.size.height,
+                         frameWidth: screenGeometry.size.width ) )
+            .monospacedDigit() )
+            
+            // Song duration in upper right corner (only when counting up)
+            if songTimerCountsUp
+            {
+              VStack
+              {
+                HStack
+                {
+                  Spacer()
+                  Text(songDurationString)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .monospacedDigit()
+                    .padding(.trailing, 8)
+                    .padding(.top, 4)
+                }
+                Spacer()
+              }
+            }
+          }
           .frame(
               maxWidth: .infinity,
              minHeight: 75,
@@ -501,6 +525,17 @@ struct SongTimerView: View
       {
         Form
         {
+          Section(header: Text("Song Timer Display"))
+          {
+            Toggle("Count Up (Elapsed Time)", isOn: $songTimerCountsUp)
+            
+            Text(songTimerCountsUp ? 
+              "Shows elapsed time in the current song" : 
+              "Shows time remaining in the current song")
+              .font(.caption)
+              .foregroundColor(.secondary)
+          }
+          
           Section(header: Text("Playlist Timer Display"))
           {
             Toggle("Show Playlist Time", isOn: $showPlaylistTime)
@@ -567,8 +602,15 @@ struct SongTimerView: View
       }
       
       // Format both timers at the same time to ensure synchronization
-      countdownMinutesString = String( format: "%02d", Int(countdownTime) / 60 )
-      countdownSecondsString = String( format: "%02d", Int(countdownTime) % 60 )
+      // Use either countdown or count-up based on user preference
+      let songTimeToDisplay = songTimerCountsUp ? currentElapsedTime : countdownTime
+      countdownMinutesString = String( format: "%02d", Int(songTimeToDisplay) / 60 )
+      countdownSecondsString = String( format: "%02d", Int(songTimeToDisplay) % 60 )
+      
+      // Format song duration
+      let durationMinutes = Int(trackDuration) / 60
+      let durationSeconds = Int(trackDuration) % 60
+      songDurationString = String( format: "%d:%02d", durationMinutes, durationSeconds )
       
       // Calculate playlist timer based on user preference (count up or count down)
       let playlistTimeToDisplay = showPlaylistElapsedTime ? 
