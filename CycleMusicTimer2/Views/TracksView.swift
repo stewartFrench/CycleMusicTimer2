@@ -58,6 +58,9 @@ struct TracksView: View
   @State var showingSettings : Bool = false
   @AppStorage("showPlaylistElapsedTimeInTracks") private var showPlaylistElapsedTime : Bool = false
 
+  @State private var pdfURL : URL? = nil
+  @State private var showingPDFShare : Bool = false
+
   private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
 
@@ -269,12 +272,40 @@ struct TracksView: View
               .font(.caption)
               .foregroundColor(.secondary)
           }
+
+          Section(header: Text("Export"))
+          {
+            Button(
+              action:
+                {
+                  if let url = buildPlaylistPDF()
+                  {
+                    pdfURL = url
+                    showingPDFShare = true
+                  }
+                },
+              label:
+                {
+                  Label("Print Playlist as PDF", systemImage: "printer")
+                } )
+
+            Text("Creates a PDF of all tracks (time, artist, album, title, drill) and opens the Share sheet so you can message, email, or save it.")
+              .font(.caption)
+              .foregroundColor(.secondary)
+          }
         }
         .navigationBarTitle("Settings", displayMode: .inline)
         .navigationBarItems(trailing: Button("Done")
         {
           showingSettings = false
         })
+        .sheet(isPresented: $showingPDFShare)
+        {
+          if let url = pdfURL
+          {
+            PlaylistPDFShareSheet(activityItems: [url])
+          }
+        }
       }
     }
     
@@ -291,6 +322,48 @@ struct TracksView: View
     }
     
   } // var body
-  
+
+
+  //---------------------------------------------
+  // Build the printable PDF for the currently selected playlist
+  // and return its temporary file URL.
+  //---------------------------------------------
+  private func buildPlaylistPDF() -> URL?
+  {
+    var entries : [PlaylistPDFTrack] = []
+
+            // Match the in-app toggle:
+            //   ON  -> show cumulative elapsed time through end of track
+            //   OFF -> show remaining time from this track to end
+    let plTimeLabel = showPlaylistElapsedTime ? "Elapsed" : "Remaining"
+
+    for tIndex in musicVM.MMTracks.indices
+    {
+      let tDrill = drillVM.getFullDrill( trackIndex: tIndex )
+
+      let tPlTime = showPlaylistElapsedTime
+                    ? musicVM.elapsedDurationString( trackIndex: tIndex )
+                    : musicVM.remainingDurationString( trackIndex: tIndex )
+
+      let tPlTimeTrim = tPlTime.trimmingCharacters( in: .whitespaces )
+
+      entries.append(
+        PlaylistPDFTrack(
+                    index : tIndex + 1,
+                     time : musicVM.trackDurationString( trackIndex: tIndex ),
+         playlistTimeLabel : plTimeLabel,
+              playlistTime : tPlTimeTrim,
+                   artist : musicVM.trackArtist( trackIndex: tIndex ),
+                    album : musicVM.trackAlbum( trackIndex: tIndex ),
+                    title : musicVM.trackName( trackIndex: tIndex ),
+                    drill : tDrill.isEmpty ? nil : tDrill ) )
+    }
+
+    return PlaylistPDFGenerator.generate(
+              playlistName: musicVM.getCollectionName(),
+                    tracks: entries )
+
+  } // buildPlaylistPDF
+
 } // TracksView
 //--------------------------------------------

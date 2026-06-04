@@ -174,6 +174,31 @@ class DrillViewModel : ObservableObject
 
 
   //-----------------------------------------------------------
+  func getFullDrill( trackIndex trackIndexP : Int ) -> String
+  {
+    if musicVM.selectedPlaylistIndex == nil
+    {
+      return ""
+    }
+
+    let tDrill =
+        drillM.getDrill(
+          playlistTitle :
+                musicVM.getPlaylistName(
+                   index: musicVM.selectedPlaylistIndex! ),
+             artistName :
+                musicVM.trackArtist(
+                   trackIndex: trackIndexP ),
+              trackName :
+                musicVM.trackName(
+                   trackIndex: trackIndexP ) )
+
+    return tDrill ?? ""
+
+  } // getFullDrill
+
+
+  //-----------------------------------------------------------
   func getFirstLine( trackIndex trackIndexP : Int ) -> String
   {
     let tDrillString = 

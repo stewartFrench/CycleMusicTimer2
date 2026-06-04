@@ -992,6 +992,24 @@ class MusicViewModel : ObservableObject
     return "Bad Track Index!" 
 
   } // trackDuration
+
+
+  //---------------------------------------------------------
+  func trackDurationString( trackIndex: Int ) -> String
+  {
+            // Return the track's individual playback duration
+            // formatted as "M:SS" (or "MM:SS").
+    if trackIndex < MMTracks.count
+    {
+      let tTrack = MMTracks[trackIndex]
+      let tDurationInt = Int( tTrack.playbackDuration )
+      let tMinutes = tDurationInt / 60
+      let tSeconds = tDurationInt % 60
+      return String( format: "%d:%02d", tMinutes, tSeconds )
+    }
+    return ""
+
+  } // trackDurationString
   
 
 

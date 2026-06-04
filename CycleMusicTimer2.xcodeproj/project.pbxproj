@@ -15,6 +15,7 @@
 		718F57EF29D7364D006F3431 /* MusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718F57EE29D7364D006F3431 /* MusicViewModel.swift */; };
 		71C05FAB29E5B1F800E76F8E /* PlaylistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C05FAA29E5B1F800E76F8E /* PlaylistsView.swift */; };
 		71C05FAD29E5B21200E76F8E /* TracksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C05FAC29E5B21200E76F8E /* TracksView.swift */; };
+		71C698D72FB4C6DE0030564C /* PlaylistPDFGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C698D62FB4C6DE0030564C /* PlaylistPDFGenerator.swift */; };
 		71E9636C2A0A97C4003427E2 /* DrillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E9636B2A0A97C4003427E2 /* DrillModel.swift */; };
 		71E9636E2A13BD2D003427E2 /* DrillEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E9636D2A13BD2D003427E2 /* DrillEditView.swift */; };
 		71E963702A15153D003427E2 /* DrillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E9636F2A15153D003427E2 /* DrillViewModel.swift */; };
@@ -31,6 +32,7 @@
 		71B9F88D29D771CD0076FBBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		71C05FAA29E5B1F800E76F8E /* PlaylistsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsView.swift; sourceTree = "<group>"; };
 		71C05FAC29E5B21200E76F8E /* TracksView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksView.swift; sourceTree = "<group>"; };
+		71C698D62FB4C6DE0030564C /* PlaylistPDFGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistPDFGenerator.swift; sourceTree = "<group>"; };
 		71E9636B2A0A97C4003427E2 /* DrillModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillModel.swift; sourceTree = "<group>"; };
 		71E9636D2A13BD2D003427E2 /* DrillEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillEditView.swift; sourceTree = "<group>"; };
 		71E9636F2A15153D003427E2 /* DrillViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrillViewModel.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				71E9636D2A13BD2D003427E2 /* DrillEditView.swift */,
 				71C05FAC29E5B21200E76F8E /* TracksView.swift */,
 				712433AF29F03821002EEF31 /* SongTimerView.swift */,
+				71C698D62FB4C6DE0030564C /* PlaylistPDFGenerator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -142,7 +145,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					718F57D929D735E1006F3431 = {
 						CreatedOnToolsVersion = 14.2;
@@ -190,6 +193,7 @@
 				712433B029F03821002EEF31 /* SongTimerView.swift in Sources */,
 				71C05FAD29E5B21200E76F8E /* TracksView.swift in Sources */,
 				718F57E029D735E1006F3431 /* ContentView.swift in Sources */,
+				71C698D72FB4C6DE0030564C /* PlaylistPDFGenerator.swift in Sources */,
 				71C05FAB29E5B1F800E76F8E /* PlaylistsView.swift in Sources */,
 				71E9636E2A13BD2D003427E2 /* DrillEditView.swift in Sources */,
 				718F57DE29D735E1006F3431 /* CycleMusicTimer2.swift in Sources */,
@@ -233,6 +237,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = SDK22Z6CLU;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -255,6 +260,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -294,6 +300,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SDK22Z6CLU;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -309,6 +316,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -323,7 +331,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CycleMusicTimer2/Preview Content\"";
-				DEVELOPMENT_TEAM = SDK22Z6CLU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CycleMusicTimer2/Info.plist;
@@ -342,12 +349,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stewart.french.CycleMusicTimer2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -362,7 +369,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CycleMusicTimer2/Preview Content\"";
-				DEVELOPMENT_TEAM = SDK22Z6CLU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CycleMusicTimer2/Info.plist;
@@ -381,12 +387,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.stewart.french.CycleMusicTimer2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

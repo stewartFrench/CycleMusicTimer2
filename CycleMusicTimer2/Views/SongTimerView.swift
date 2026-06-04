@@ -57,6 +57,7 @@ struct SongTimerView: View
   @State var elapsedTrackTime : Float = 0
   @State var countdownTime : Double = 0
   @State var playlistElapsedTime : Double = 0
+  @State var lastTrackedIndex : Int? = nil
   
   @State var countdownMinutesString : String = "00"
   @State var countdownSecondsString : String = "00"
@@ -582,9 +583,23 @@ struct SongTimerView: View
           perform:
     { _ in
 
+      // Detect if the track has changed
+      let currentTrackIndex = musicVM.selectedTrackIndex
+      let trackHasChanged = (lastTrackedIndex != currentTrackIndex)
+      
+      if trackHasChanged {
+        lastTrackedIndex = currentTrackIndex
+      }
+
       // Get elapsed time once to ensure both timers use the same value
-      let currentElapsedTime = musicVM.elapsedTimeOfSelectedTrack()
+      var currentElapsedTime = musicVM.elapsedTimeOfSelectedTrack()
       let trackDuration = musicVM.durationOfSelectedTrack()
+      
+      // If track just changed and elapsed time is suspiciously high (> 1 second),
+      // force it to zero to prevent display of stale time from previous track
+      if trackHasChanged && currentElapsedTime > 1.0 {
+        currentElapsedTime = 0.0
+      }
       
       elapsedTrackTime = Float( currentElapsedTime / trackDuration )
       
