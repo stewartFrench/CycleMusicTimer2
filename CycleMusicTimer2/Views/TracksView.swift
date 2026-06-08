@@ -60,6 +60,7 @@ struct TracksView: View
 
   @State private var pdfURL : URL? = nil
   @State private var showingPDFShare : Bool = false
+  @State private var showingPDFError : Bool = false
 
   private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
@@ -278,10 +279,20 @@ struct TracksView: View
             Button(
               action:
                 {
-                  if let url = buildPlaylistPDF()
-                  {
-                    pdfURL = url
-                    showingPDFShare = true
+                  // Generate PDF and wait a moment for file system to settle
+                  DispatchQueue.main.async {
+                    pdfURL = buildPlaylistPDF()
+                    if pdfURL != nil
+                    {
+                      // Small delay to ensure file is fully written
+                      DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        showingPDFShare = true
+                      }
+                    }
+                    else
+                    {
+                      showingPDFError = true
+                    }
                   }
                 },
               label:
@@ -299,11 +310,28 @@ struct TracksView: View
         {
           showingSettings = false
         })
+        .alert("PDF Generation Failed", isPresented: $showingPDFError)
+        {
+          Button("OK", role: .cancel) { }
+        } message: {
+          Text("Unable to create the PDF. Please try again.")
+        }
         .sheet(isPresented: $showingPDFShare)
         {
           if let url = pdfURL
           {
             PlaylistPDFShareSheet(activityItems: [url])
+              .presentationDetents([.medium, .large])
+          }
+          else
+          {
+            Text("Loading PDF...")
+              .onAppear {
+                // If URL becomes nil, dismiss the sheet
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                  showingPDFShare = false
+                }
+              }
           }
         }
       }

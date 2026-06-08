@@ -95,7 +95,8 @@ struct SongTimerView: View
           // portrait).  So I experimentally determined these values
           // and tested them on various devices for acceptability.
 
-    if frameWidthP < 440
+    // For iPhones in portrait, use consistent smaller font regardless of exact model
+    if idiom == .phone && frameWidthP < 500
     {
       return 100.0
     }
@@ -116,7 +117,8 @@ struct SongTimerView: View
 //    print( "Font frameHeight == \(frameHeightP)" )
 //    print( "Font frameWidth == \(frameWidthP)" )
 
-    if frameWidthP < 440
+    // For iPhones in portrait, use consistent smaller frame regardless of exact model
+    if idiom == .phone && frameWidthP < 500
     {
       return 100
     }

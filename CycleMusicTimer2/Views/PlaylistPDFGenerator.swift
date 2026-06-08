@@ -70,17 +70,19 @@ struct PlaylistPDFGenerator
                     .components( separatedBy: invalid )
                     .joined( separator: "_" )
     let baseName = cleaned.isEmpty ? "Playlist" : cleaned
-    let tempURL  = FileManager.default.temporaryDirectory
-                     .appendingPathComponent( "\(baseName).pdf" )
+    
+    // Use a cache directory instead of temp for better reliability with share sheet
+    let cacheDir = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+    let pdfURL = cacheDir.appendingPathComponent( "\(baseName).pdf" )
 
             // Remove any prior file with this name.
-    try? FileManager.default.removeItem( at: tempURL )
+    try? FileManager.default.removeItem( at: pdfURL )
 
     let renderer = UIGraphicsPDFRenderer( bounds: pageRect )
 
     do
     {
-      try renderer.writePDF( to: tempURL )
+      try renderer.writePDF( to: pdfURL )
       { context in
 
         context.beginPage()
@@ -255,7 +257,7 @@ struct PlaylistPDFGenerator
 
       } // writePDF
 
-      return tempURL
+      return pdfURL
     }
     catch
     {
@@ -294,9 +296,21 @@ struct PlaylistPDFShareSheet : UIViewControllerRepresentable
 
   func makeUIViewController( context: Context ) -> UIActivityViewController
   {
-    return UIActivityViewController(
+    let controller = UIActivityViewController(
               activityItems: activityItems,
         applicationActivities: nil )
+    
+    // Add completion handler to clean up temporary file
+    controller.completionWithItemsHandler = { _, _, _, _ in
+      // Clean up the temp file after sharing
+      for item in activityItems {
+        if let url = item as? URL {
+          try? FileManager.default.removeItem(at: url)
+        }
+      }
+    }
+    
+    return controller
   }
 
   func updateUIViewController(
