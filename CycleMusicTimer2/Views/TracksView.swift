@@ -274,18 +274,22 @@ struct TracksView: View
               .foregroundColor(.secondary)
           }
 
-          Section(header: Text("Export"))
+          Section(header: Text("Print"))
           {
             Button(
               action:
                 {
-                  // Generate PDF and wait a moment for file system to settle
-                  DispatchQueue.main.async {
-                    pdfURL = buildPlaylistPDF()
-                    if pdfURL != nil
+                  // Generate PDF
+                  if let url = buildPlaylistPDF()
+                  {
+                    // Verify file exists and is readable before showing share sheet
+                    if FileManager.default.fileExists(atPath: url.path)
                     {
-                      // Small delay to ensure file is fully written
-                      DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                      pdfURL = url
+                      // Dismiss settings sheet first
+                      showingSettings = false
+                      // Then show share sheet after settings sheet is dismissed
+                      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         showingPDFShare = true
                       }
                     }
@@ -293,6 +297,10 @@ struct TracksView: View
                     {
                       showingPDFError = true
                     }
+                  }
+                  else
+                  {
+                    showingPDFError = true
                   }
                 },
               label:
@@ -316,24 +324,28 @@ struct TracksView: View
         } message: {
           Text("Unable to create the PDF. Please try again.")
         }
-        .sheet(isPresented: $showingPDFShare)
-        {
-          if let url = pdfURL
-          {
-            PlaylistPDFShareSheet(activityItems: [url])
-              .presentationDetents([.medium, .large])
+      }
+    }
+    .sheet(isPresented: $showingPDFShare, onDismiss: {
+      // Clean up URL when sheet is dismissed
+      pdfURL = nil
+    })
+    {
+      if let url = pdfURL
+      {
+        PlaylistPDFShareSheet(activityItems: [url])
+          .presentationDetents([.medium, .large])
+          .interactiveDismissDisabled(false)
+      }
+      else
+      {
+        Text("Loading PDF...")
+          .onAppear {
+            // If URL becomes nil, dismiss the sheet
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+              showingPDFShare = false
+            }
           }
-          else
-          {
-            Text("Loading PDF...")
-              .onAppear {
-                // If URL becomes nil, dismiss the sheet
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                  showingPDFShare = false
-                }
-              }
-          }
-        }
       }
     }
     
